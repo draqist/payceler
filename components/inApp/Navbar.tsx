@@ -5,7 +5,7 @@ import { AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const Navbar = () => {
   return (
-    <nav className="w-full h-74px rounded-full border border-blue-200 bg-white flex justify-between items-center px-20 py-3">
+    <nav className="w-full h-74px rounded-2xl lg:rounded-full border border-blue-200 bg-white flex justify-between items-center px-6 lg:px-20 py-3">
       <div className="flex items-center">
         <Image
           src="/payceler.svg"
@@ -16,10 +16,12 @@ const Navbar = () => {
         />
       </div>
       <div className="flex items-center">
-        <h1 className="text-lg font-bold text-[#6882B6]">Send Money</h1>
+        <h1 className="text-lg hidden md:block font-bold text-[#6882B6]">
+          Send Money
+        </h1>
       </div>
       <div className="flex items-center">
-        <div className="h-10 w-10 border-[3px] rounded-full border-[#D7E1F4] mr-2">
+        <div className="h-10 w-10 border-[3px] rounded-full border-[#D7E1F4] mr-2 hidden md:block">
           <Avatar className="">
             <AvatarImage
               src="https://github.com/shadcn.png"

@@ -1,4 +1,5 @@
 "use client";
+import BottomNav from "@/components/inApp/BottomNav";
 import Navbar from "@/components/inApp/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -110,10 +111,10 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen mx-auto px-24 py-6">
+    <main className="min-h-screen lg:mx-auto px-4 lg:px-24 py-6">
       <Navbar />
       <div className="w-full flex flex-col items-center mt-14">
-        <Card className="rounded-[38px] bg-white border-borderGray w-[452px] p-6 mb-6">
+        <Card className="rounded-[38px] bg-white border-borderGray w-full max-w-[452px] p-6 mb-6">
           <span className="text-xs font-semibold text-textGray"> Spent </span>
           <p className="text-textGray font-semibold text-base">$0.00</p>
           <Slider
@@ -135,7 +136,7 @@ export default function Home() {
             </div>
           </div>
         </Card>
-        <Card className="rounded-t-[38px] bg-white border-borderGray border-b-0 w-[452px] p-6 mb-3 flex justify-between items-center">
+        <Card className="rounded-t-[38px] bg-white border-borderGray border-b-0 w-full max-w-[452px] p-6 mb-3 flex justify-between items-center">
           <div className="grid w-full max-w-sm items-center gap-1">
             <Label
               htmlFor="moneySent"
@@ -180,7 +181,7 @@ export default function Home() {
             </SelectContent>
           </Select>
         </Card>
-        <Card className="bg-white border-borderGray w-[452px] flex items-center justify-between p-6 mb-3">
+        <Card className="bg-white border-borderGray w-full max-w-[452px] flex items-center justify-between p-6 mb-3">
           <div className="grid text-left items-center gap-1">
             <p className="text-sm font-medium text-textGray"> Rate: </p>
             <p className="text-sm font-medium text-textGray"> Commission: </p>
@@ -203,50 +204,53 @@ export default function Home() {
             <p className="text-sm font-medium text-textGray"> 0.00 NGN </p>
           </div>
         </Card>
-        <Card className="rounded-b-[38px] bg-white border-borderGray border-b-0 w-[452px] p-6 flex justify-between items-center">
-          <div className="grid w-full max-w-sm items-center gap-1">
-            <Label
-              htmlFor="moneyReceived"
-              className="text-base font-semibold bg-transparent text-app"
-            >
-              Reciever Gets
-            </Label>
-            <div className="flex items-center">
-              <span className="text-3xl text-inputText font-semibold">
-                {receiverCurrency?.sign}
-              </span>
-              <Input
-                type="text"
-                id="moneyReceived"
-                pattern="/^\d+$/"
-                inputMode="numeric"
-                placeholder="0.00"
-                className="text-inputText"
-                value={moneyReceived}
-                onChange={handleReceiverConversion}
-              />
+        <Card className="relative rounded-b-[48px] bg-white border-borderGray border-b-0 w-full max-w-[452px] pt-6">
+          <Card className=" px-6 flex justify-between shadow-none border-0  items-center">
+            <div className="grid w-full max-w-sm items-center gap-1">
+              <Label
+                htmlFor="moneyReceived"
+                className="text-base font-semibold bg-transparent text-app"
+              >
+                Reciever Gets
+              </Label>
+              <div className="flex items-center">
+                <span className="text-3xl text-inputText font-semibold">
+                  {receiverCurrency?.sign}
+                </span>
+                <Input
+                  type="text"
+                  id="moneyReceived"
+                  pattern="/^\d+$/"
+                  inputMode="numeric"
+                  placeholder="0.00"
+                  className="text-inputText"
+                  value={moneyReceived}
+                  onChange={handleReceiverConversion}
+                />
+              </div>
             </div>
-          </div>
-          <Select onValueChange={handleReceiverChange}>
-            <SelectTrigger className="w-[114px] rounded-l-full">
-              <SelectValue
-                placeholder={`${receiverCurrency?.value.toUpperCase()}`}
-                defaultValue={`${receiverCurrency?.value.toLowerCase()}`}
-              />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {currencyHelpers.map((curr, idx) => (
-                  <SelectItem
-                    key={`${curr.value} + ${idx + 64}`}
-                    value={curr.value}
-                  >
-                    {curr.title}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+            <Select onValueChange={handleReceiverChange}>
+              <SelectTrigger className="w-[114px] rounded-l-full">
+                <SelectValue
+                  placeholder={`${receiverCurrency?.value.toUpperCase()}`}
+                  defaultValue={`${receiverCurrency?.value.toLowerCase()}`}
+                />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {currencyHelpers.map((curr, idx) => (
+                    <SelectItem
+                      key={`${curr.value} + ${idx + 64}`}
+                      value={curr.value}
+                    >
+                      {curr.title}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </Card>
+          <BottomNav />
         </Card>
       </div>
     </main>
